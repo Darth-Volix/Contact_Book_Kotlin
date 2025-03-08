@@ -1,6 +1,6 @@
 # Overview
 
-{Provide a description of the software that you wrote to demonstrate the Kotlin language.}
+This software is a basic implementation of a contact-book manager that runs in the terminal. It uses functions, classes, variables (mutable and immutable), loops, conditionals, etc. It manages two types of contacts: personal and business. A user can add, edit, search for, display, and delete contacts from their contact book. Functionality has also been added to prevent the user from adding duplicate contacts. All of the software has been written in Kotlin and developed in IntelliJ Idea. 
 
 {Describe your purpose for writing this software.}
 
