@@ -41,7 +41,7 @@ class MainMenu {
         }
     }
 
-    // Function to skip 2 lines to help with console formatting
+    // Function to skip 2 lines to help with formatting
     private fun skipLines() {
         repeat(2) { println() }
     }
@@ -56,7 +56,17 @@ class MainMenu {
         val email = readLine() ?: ""
         print("Enter relationship: ")
         val relationship = readLine() ?: ""
-        contactBook.addPersonalContact(PersonalContact(name, phone, email, relationship))
+
+        // Check if the personal contact already exists by name or email
+        val exists = contactBook.getPersonalContacts().any {
+            it.name == name || it.email == email
+        }
+
+        if (exists) {
+            println("Contact already exists. Cannot add duplicate contact.")
+        } else {
+            contactBook.addPersonalContact(PersonalContact(name, phone, email, relationship))
+        }
     }
 
     // Adds a new business contact with name, phone, email, job title, and company
@@ -71,7 +81,17 @@ class MainMenu {
         val jobTitle = readLine() ?: ""
         print("Enter company name: ")
         val company = readLine() ?: ""
-        contactBook.addBusinessContact(BusinessContact(name, phone, email, jobTitle, company))
+
+        // Check if the business contact already exists by name or email
+        val exists = contactBook.getBusinessContacts().any {
+            it.name == name || it.email == email
+        }
+
+        if (exists) {
+            println("Contact already exists. Cannot add duplicate contact.")
+        } else {
+            contactBook.addBusinessContact(BusinessContact(name, phone, email, jobTitle, company))
+        }
     }
 
     // Prompts user to edit an existing personal contact
@@ -106,7 +126,6 @@ class MainMenu {
     private fun searchPersonalContacts() {
         print("Enter the name to search for in personal contacts: ")
         val name = readLine() ?: ""
-        println()
         contactBook.searchPersonalContacts(name)
     }
 
@@ -114,7 +133,6 @@ class MainMenu {
     private fun searchBusinessContacts() {
         print("Enter the name to search for in business contacts: ")
         val name = readLine() ?: ""
-        println()
         contactBook.searchBusinessContacts(name)
     }
 }

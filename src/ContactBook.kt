@@ -3,6 +3,16 @@ class ContactBook {
     private val personalContacts = mutableListOf<PersonalContact>()
     private val businessContacts = mutableListOf<BusinessContact>()
 
+   // Returns the list of personal contacts
+    fun getPersonalContacts(): List<PersonalContact> {
+        return personalContacts
+    }
+
+    // Returns the list of business contacts
+    fun getBusinessContacts(): List<BusinessContact> {
+        return businessContacts
+    }
+
     // Adds a new personal contact to the list
     fun addPersonalContact(contact: PersonalContact) {
         personalContacts.add(contact)
