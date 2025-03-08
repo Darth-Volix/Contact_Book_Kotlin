@@ -106,6 +106,7 @@ class MainMenu {
     private fun searchPersonalContacts() {
         print("Enter the name to search for in personal contacts: ")
         val name = readLine() ?: ""
+        println()
         contactBook.searchPersonalContacts(name)
     }
 
@@ -113,6 +114,7 @@ class MainMenu {
     private fun searchBusinessContacts() {
         print("Enter the name to search for in business contacts: ")
         val name = readLine() ?: ""
+        println()
         contactBook.searchBusinessContacts(name)
     }
 }
