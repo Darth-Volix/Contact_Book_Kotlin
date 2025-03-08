@@ -1,9 +1,12 @@
 class MainMenu {
+    // Create a new ContactBook instance to store contacts
     private val contactBook = ContactBook()
 
+    // Displays the main menu and handles user input
     fun menu() {
+        skipLines()
         while (true) {
-            println("\nContact Book Menu:")
+            println("Contact Book Menu:")
             println("1. Add Personal Contact")
             println("2. Add Business Contact")
             println("3. Edit Personal Contact")
@@ -16,75 +19,97 @@ class MainMenu {
             println("10. Exit")
             print("Choose an option: ")
 
+            // Handle the menu options based on user input
             when (readLine()?.toIntOrNull()) {
-                1 -> addPersonalContact()
-                2 -> addBusinessContact()
-                3 -> editPersonalContact()
-                4 -> editBusinessContact()
-                5 -> deletePersonalContact()
-                6 -> deleteBusinessContact()
-                7 -> searchPersonalContacts()
-                8 -> searchBusinessContacts()
-                9 -> contactBook.displayAllContacts()
+                1 -> { skipLines(); addPersonalContact(); skipLines() }
+                2 -> { skipLines(); addBusinessContact(); skipLines() }
+                3 -> { skipLines(); editPersonalContact(); skipLines() }
+                4 -> { skipLines(); editBusinessContact(); skipLines() }
+                5 -> { skipLines(); deletePersonalContact(); skipLines() }
+                6 -> { skipLines(); deleteBusinessContact(); skipLines() }
+                7 -> { skipLines(); searchPersonalContacts(); skipLines() }
+                8 -> { skipLines(); searchBusinessContacts(); skipLines() }
+                9 -> { skipLines(); contactBook.displayAllContacts(); skipLines() }
                 10 -> {
+                    skipLines()
                     println("Exiting program. Goodbye!")
                     return
                 }
-                else -> println("Invalid option. Please try again.")
+                // Handle invalid options
+                else -> { skipLines(); println("Invalid option. Please try again.") }
             }
         }
     }
 
+    // Function to skip 2 lines to help with console formatting
+    private fun skipLines() {
+        repeat(2) { println() }
+    }
+
+    // Adds a new personal contact with name, phone, email, and relationship
     private fun addPersonalContact() {
         print("Enter name: ")
         val name = readLine() ?: ""
         print("Enter phone number: ")
         val phone = readLine() ?: ""
+        print("Enter email: ")
+        val email = readLine() ?: ""
         print("Enter relationship: ")
         val relationship = readLine() ?: ""
-        contactBook.addPersonalContact(PersonalContact(name, phone, relationship))
+        contactBook.addPersonalContact(PersonalContact(name, phone, email, relationship))
     }
 
+    // Adds a new business contact with name, phone, email, job title, and company
     private fun addBusinessContact() {
         print("Enter name: ")
         val name = readLine() ?: ""
         print("Enter phone number: ")
         val phone = readLine() ?: ""
+        print("Enter email: ")
+        val email = readLine() ?: ""
+        print("Enter job title: ")
+        val jobTitle = readLine() ?: ""
         print("Enter company name: ")
         val company = readLine() ?: ""
-        contactBook.addBusinessContact(BusinessContact(name, phone, company))
+        contactBook.addBusinessContact(BusinessContact(name, phone, email, jobTitle, company))
     }
 
+    // Prompts user to edit an existing personal contact
     private fun editPersonalContact() {
         print("Enter the name of the personal contact to edit: ")
         val name = readLine() ?: ""
         contactBook.editPersonalContact(name)
     }
 
+    // Prompts user to edit an existing business contact
     private fun editBusinessContact() {
         print("Enter the name of the business contact to edit: ")
         val name = readLine() ?: ""
         contactBook.editBusinessContact(name)
     }
 
+    // Deletes a personal contact based on the provided name
     private fun deletePersonalContact() {
         print("Enter the name of the personal contact to delete: ")
         val name = readLine() ?: ""
         contactBook.deletePersonalContact(name)
     }
 
+    // Deletes a business contact based on the provided name
     private fun deleteBusinessContact() {
         print("Enter the name of the business contact to delete: ")
         val name = readLine() ?: ""
         contactBook.deleteBusinessContact(name)
     }
 
+    // Searches for a personal contact based on the provided name
     private fun searchPersonalContacts() {
         print("Enter the name to search for in personal contacts: ")
         val name = readLine() ?: ""
         contactBook.searchPersonalContacts(name)
     }
 
+    // Searches for a business contact based on the provided name
     private fun searchBusinessContacts() {
         print("Enter the name to search for in business contacts: ")
         val name = readLine() ?: ""
